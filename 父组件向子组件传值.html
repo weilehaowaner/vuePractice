@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div id="app">
+    <com :parentmsg="msg"></com>
+</div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            msg:'父组件中的data数据'
+        },
+        components:{
+            com:{
+                data:function(){
+                    return {
+                        title:'私有组件',
+                        content:'私有组件中的data数据'
+                    }
+                },
+                template:'<h3>组件显示内容----{{parentmsg}}</h3>',
+                props: ['parentmsg']
+            }
+        }
+    })
+</script>
+</html>

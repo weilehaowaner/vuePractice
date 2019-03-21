@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>非父子组件通信</title>
+		<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<p>{{message}}</p>
+			<my-component></my-component>
+		</div>
+		<script>
+			var bus=new Vue();
+//			console.log(1);
+			Vue.component('my-cpmponent',{
+				template:'<button @click="handsend">传递事件</button>',
+				methods:{
+					handsend:function(){
+						this.$parent.message='来自组件my-component的内容';
+					}
+				}
+			});
+//			console.log(2);
+			var app=new Vue({
+				el:'#app',
+				data:{
+					message:''
+				}
+			});
+//			console.log(3);
+//避免在模板中使用$refs来访问组件
+		</script>
+	</body>
+</html>

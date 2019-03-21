@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <link href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        li{
+            width:400px;
+            height:60px;
+            font-size:16px;
+            line-height:35px;
+            list-style: none;
+            border:1px solid black;
+            padding:10px;
+            margin:10px;
+        }
+        .v-enter,.v-leave-to{
+            opacity: 0;
+            transform: translateY(150px);
+        }
+        .v-enter-active,.v-leave-active{
+            transition: all 0.8s ease;
+        }
+        li:hover{
+            background-color: pink;
+        }
+        /*下面的v-move和v-leave-active配合使用，能实现列表后续的元素渐渐地漂上来的效果*/
+        .v-move{
+            transition:all 0.6s ease;
+        }
+        .v-leave-active{
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="form-inline">
+        <label>
+            ID:<input type="text" v-model="id">
+        </label>
+        <label>
+            Name:<input type="text" v-model="name">
+        </label>
+        <input type="button" @click="add" value="添加">
+    </div>
+    <ul>
+        <transition-group>
+            <li v-for="(item,i) in lists" :key="item.id" @click="del(i)">{{item.id}}   ---   {{item.name}}</li>
+        </transition-group>
+    </ul>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            id:"",
+            name:"",
+            lists:[
+                {id:1,name:'韩潇'},
+                {id:2,name:'丁一'}
+            ]
+        },
+        methods:{
+            add:function(){
+                this.lists.push({id:this.id,name:this.name});
+            },
+            del:function(i){
+                this.lists.splice(i,1);
+            }
+        }
+    })
+</script>
+</body>
+</html>

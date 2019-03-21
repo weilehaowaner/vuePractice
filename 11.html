@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>x-template</title>
+		<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<my-component></my-component>
+			<script type="text/template" id="my-template">
+				<div>这是组件的内容</div>
+			</script>
+		</div>
+		<script>
+			Vue.component('my-component',{
+				template:'#my-template'
+			});
+			var app=new Vue({
+				el:"#app"
+			})
+		</script>
+	</body>
+</html>

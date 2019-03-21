@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车总价</title>
+		<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			总价：{{count}}
+		</div>
+		<script>
+			var app=new Vue({
+				el:'#app',
+				data:{
+					package1:[
+						{
+							name:"苹果",
+							price:10,
+							count:1
+						},
+						{
+							name:"香蕉",
+							price:20,
+							count:1
+						},
+						{
+							name:"橙子",
+							price:30,
+							count:1
+						}
+					],
+					package2:[
+						{
+							name:"榴莲",
+							price:10,
+							count:1
+						},
+						{
+							name:"橘子",
+							price:20,
+							count:1
+						},
+						{
+							name:"葡萄",
+							price:30,
+							count:1
+						}
+					]
+				},
+				computed:{
+					count:function(){
+						var all=0;
+						for(var i=0;i<this.package1.length;i++){
+							all+=this.package1[i].price*this.package1[i].count;
+						}
+						for(var i=0;i<this.package2.length;i++){
+							all+=this.package2[i].price*this.package2[i].count;
+						}
+						return all;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

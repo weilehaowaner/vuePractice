@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>入门练习</title>
+  	<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+	<!--获取时间过滤时间格式-->
+  <div id="app">
+  	{{date|formatDate}}
+  <script>
+//	在月份日期前加0
+	var preDate=function(value){
+		return value<10?'0'+value:value;
+	}
+	
+    var app=new Vue({
+      el:'#app',
+      data:{
+       date:new Date()
+      },
+      filters:{
+      	formatDate:function(value){
+      		var date=new Date(value);
+      		var year=date.getFullYear();
+      		var month=preDate(date.getMonth()+1);
+      		var day=preDate(date.getDate());
+      		var hour=preDate(date.getHours());
+      		var minutes=preDate(date.getMinutes());
+      		var seconds=preDate(date.getSeconds());
+      		return year+"-"+month+"-"+day+"-"+hour+"-"+minutes+"-"+seconds;
+      	}
+      },
+      mounted:function(){
+      	var _this=this;
+      	_this.timer=setInterval(function(){
+      		_this.date=new Date();
+      	},1000)
+      },
+      beforeeDestory:function(){
+      	if(this.timer){
+      		clearInterval( this.timer);
+      	}
+      }
+    })
+  </script>
+</body>
+</html>

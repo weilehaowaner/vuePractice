@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div id="app">
+    <com @fun="show"></com>
+</div>
+<template id="temp">
+    <div>
+        <h1>这是子组件</h1>
+        <input type="button" value="触发父组件" @click="myclick">
+    </div>
+</template>
+<script>
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{
+            show:function(data){
+                console.log('父组件的show方法'+data);
+            }
+        },
+        components:{
+            com:{
+                template:'#temp',
+                data:function(){
+                    return {
+                        sonData:123
+                    }
+                },
+                methods: {
+                    myclick:function(){
+                        this.$emit('fun',this.sonData)
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+</head>
+<body>
+<!--子组件获取父组件的值通过绑定-->
+<!--父组件获取子组件的值要通过方法调用-->
+<div id="app">
+    <com1 :parent-msg="msg" @fun="getSonMsg"></com1>
+</div>
+<template id="temp">
+    <div>
+        <h3>这是---{{parentMsg}}</h3>
+        <input type="button" value="向父组件中传递值" @click="sendmsg">
+    </div>
+</template>
+<script>
+    var com1={
+        template:'#temp',
+        data(){
+            return {
+                sonmsg:'这是子组件中的msg',
+            }
+        },
+        props:['parentMsg'],
+        methods:{
+            sendmsg(){
+                this.$emit('fun',this.sonmsg)
+            }
+        }
+    };
+    new Vue({
+        el:'#app',
+        data:{
+            msg:'这是父组件的msg',
+            getData: ''
+        },
+        methods:{
+            getSonMsg(data){
+                this.getData=data;
+                console.log(this.getData);
+            }
+        },
+        components:{
+            com1
+        }
+    })
+</script>
+</body>
+</html>

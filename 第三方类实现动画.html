@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <link href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div id="app">
+    <input type="button" @click="flag=!flag" value="动画h3">
+    <!--入场使用bounceIn、消失使用bounceOut-->
+    <!--  :duration=“毫秒值”  统一表示动画执行的时间-->
+    <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut" :duration="400">
+        <h3 v-if="flag">这是一段文字</h3>
+    </transition>
+    <!--使用 ：duration="{enter:200,leave:400}" 来分别设置入场和出场的时间-->
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            flag:false
+        }
+    })
+</script>
+</body>
+</html>

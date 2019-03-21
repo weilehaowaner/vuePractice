@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <link href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .ball{
+            width:100px;
+            height:100px;
+            border-radius: 50%;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input value="加入购物车" @click="flag=!flag" type="button">
+    <transition
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @after-enter="afterEnter">
+        <div class="ball" v-if="flag"></div>
+    </transition>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            flag:false
+        },
+        methods:{
+            //动画钩子函数的第一个参数，便是要执行动画的那个dom元素，是个原声的JS对象
+            beforeEnter(el){
+                // 动画入场之前，此时动画还未开始，可以在beforeEnter中设置元素入场前的起始位置
+                el.style.transform="translate(0,0)"
+            },
+            enter(el,done){
+                // 表示动画开始之后的样子，这里可以设置小球完成动画之后的结束状态
+                el.offsetWidth;//没有实际作用，但是不写时会没有动画的效果
+                el.style.transform="translate(150px,450px)";
+                el.style.transition="all 0.8s ease";
+                done();//可以使动画执行完成之后立即执行afterEnter函数
+            },
+            afterEnter(el){
+                this.flag=!this.flag;
+                console.log("添加购物车成功！")
+            }
+        }
+    })
+</script>
+</body>
+</html>

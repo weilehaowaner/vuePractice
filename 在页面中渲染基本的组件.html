@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script></head>
+<body>
+<div id="app">
+    <p>123</p>
+</div>
+</body>
+<script>
+    var login={
+        template:'<h1>登陆组件</h1>'
+    };
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{},
+        render:function(createElements){
+            return createElements(login);
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选择框</title>
+		<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+	</head>
+	<body>
+		<!--单选框-->
+		<div id="app">
+			<input type="radio" value="男" v-model="picked" id="man"/>
+			<label for="man">男</label>
+			<br />
+			<input type="radio" value="女" v-model="picked" id="woman"></input>
+			<label for="woman">女</label>
+		</div>
+		<!--复选框-->
+		<div id="app1">
+			<input type="checkbox" value="香蕉" v-model="picked" id="banana"/>
+			<label for="banana">香蕉</label>
+			<br />
+			<input type="checkbox" value="苹果" v-model="picked" id="apple"></input>
+			<label for="apple">苹果</label>
+			<br />
+			<input type="checkbox" value="橘子" v-model="picked" id="orange"></input>
+			<label for="orange">橘子</label>
+		</div>
+		<!--下拉菜单-->
+		<div id="app2">
+			<select v-model="selected">
+				<option v-for="item in items" :value="item.text">
+					{{item.text}}
+				</option>
+			</select>
+		</div>
+	</body>
+	<script>
+		var app=new Vue({
+			el:'#app',
+			data:{
+				picked:'女'
+			}
+		});
+		var app1=new Vue({
+			el:'#app1',
+			data:{
+				picked:['香蕉','橘子']
+			}
+		});
+		var app2=new Vue({
+			el:'#app2',
+			data:{
+				items:[
+					{
+						text:"第一名"
+					},{
+						text:"第二名"
+					},{
+						text:"第三名"
+					}
+				],
+				selected:'第一名'
+			}
+		});
+	</script>
+</html>

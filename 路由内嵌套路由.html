@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-link to="/account">account</router-link>
+    <router-view></router-view>
+</div>
+<template id="account">
+    <div>
+        <h3>account组件</h3>
+        <!--注意-->
+        <router-link to="/account/login">登录</router-link>
+        <router-link to="/account/register">注册</router-link>
+        <!--嵌套的路由链接显示-->
+        <router-view></router-view>
+    </div>
+</template>
+<template id="login">
+    <h3>登陆组件</h3>
+</template>
+<template id="register">
+    <h3>注册组件</h3>
+</template>
+<script>
+    var account={
+        template:'#account'
+    };
+    var login={
+        template:'#login'
+    };
+    var register={
+        template:'#register'
+    };
+    var router=new VueRouter({
+        routes:[
+            {
+                path:'/account',
+                component:account,
+                // 嵌套的子路由链接，使用children包括
+                children:[
+                    {path:'login',component: login},
+                    {path:'register',component: register}
+                ]
+            }
+        ],
+    });
+    new Vue({
+        el:'#app',
+        data:{},
+        methods:{},
+        router
+    })
+</script>
+</body>
+</html>

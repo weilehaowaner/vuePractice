@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.0.1/vue-router.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <a href="#" @click.prevent="flag=true">登录</a>
+    <a href="#" @click.prevent="flag=false">注册</a>
+    <h3 v-if="flag">登陆组件</h3>
+    <h3 v-else>注册组件</h3>
+</div>
+</body>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            flag:true
+        }
+    })
+</script>
+</html>

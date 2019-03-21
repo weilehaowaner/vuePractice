@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+<div id="app">
+    <input type="button" value="获取元素" ref="mybtn" @click="get">
+    <com1 ref="mycom1"></com1>
+</div>
+<template id="temp">
+    <div>
+        <h3>{{msg}}</h3>
+        <hr/>
+        <input type="button" value="子按钮" @click="getSonMsg">
+    </div>
+</template>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+        },
+        methods:{
+            get(){
+                console.log(this.$refs.mycom1.msg);
+                this.$refs.mycom1.getSonMsg();
+            }
+        },
+        components:{
+            com1:{
+                template:'#temp',
+                data(){
+                    return {
+                        msg:'子组件标题'
+                    }
+                },
+                methods:{
+                    getSonMsg(){
+                        console.log("调用了子组件的方法");
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

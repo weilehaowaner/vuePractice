@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数字输入框组件</title>
+		<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+		<script src="input-number.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<input-number v-model="value" :max="10" :min="5"></input-number>
+		</div>
+	</body>
+</html>
+<script>
+//	文本框type='file'
+	var add=document.getElementById('#add')
+ add.onchange=function () {
+        var file = this;
+        var fileObj =file[0];
+        var windowURL = window.URL || window.webkitURL;
+        var dataURL;
+        if (fileObj && fileObj.files && fileObj.files[0]) {
+            dataURL = windowURL.createObjectURL(fileObj.files[0]);
+        }
+        var trs=document.getElementsByTagName('tr');
+    	var telp='<td><img src='+dataURL+'/></td>'
+    	if(tds.length==3){
+    		let Table=document.getElementsByTagName('table')[0];
+    		let tds=trs[trs.length-1].getElementsByTagName('td');
+    		let newTr=document.createElement('<tr></tr>');
+    		newTr.append(telp);
+    		Table.appendChild(newTr);
+    	}
+    	else{
+    		trs[trs.length-1].append(telp);
+    	}
+};
+</script>

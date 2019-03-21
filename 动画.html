@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        /*自定义两组样式来控制transtion内部元素的变化*/
+        .v-enter,.v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .v-enter-active,.v-leave-active{
+            transition:all 0.8s ease;
+        }
+        .my-enter,.my-leave-to{
+            opacity: 0;
+            transform: translateY(150px);
+        }
+        .my-enter-active,.my-leave-active{
+            transition:all 0.8s ease;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="button" @click="flag=!flag" value="动画h3">
+    <transition>
+        <h3 v-if="flag">这是一段文字</h3>
+    </transition>
+    <hr/>
+    <input type="button" @click="flag2=!flag2" value="动画h4">
+    <transition name="my">
+        <h4 v-if="flag2">这是另一段文字</h4>
+    </transition>
+</div>
+<script>
+    var vm=new Vue({
+        el:"#app",
+        data:{
+            flag:false,
+            flag2:false
+        }
+    })
+</script>
+</body>
+</html>
